@@ -1,5 +1,4 @@
 import re
-from copy import deepcopy
 
 with open('input.txt', 'r') as file:
     setup, moves = list(
@@ -11,7 +10,7 @@ crates = [list(map(lambda x: x[i], setup[-2::-1]))
           for i in range(1, min(map(len, setup[-2::-1])), 4)]
 
 crates = [list(filter(lambda x: x != ' ', stack)) for stack in crates]
-crates2 = deepcopy(crates)
+crates2 = [x.copy() for x in crates]
 
 
 def move_op(crates: list[list[str]], crates2: list[list[str]], qty: int, source: int, dest: int):
