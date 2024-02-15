@@ -4,9 +4,7 @@ import scala.util.matching.Regex.Match
 @main def main =
   val file1 =
     scala.io.Source.fromResource("01/input.txt").getLines().mkString("\n")
-  val file2 =
-    scala.io.Source.fromResource("01/input2.txt").getLines().mkString("\n")
-  println(part1(file2))
+  println(part1(file1))
   println(part2(file1))
 
 def lineToNum(line: String) =
@@ -41,8 +39,7 @@ def matchToNum(partial: String) =
     else trunc.toIntOption
 
 def part2(input: String) =
-  val numRegex =
-    ("(?=(" + (numMap.map(_._1).mkString("|") + """|\d""") + "))").r
+  val numRegex = (numMap.map(_._1).mkString("|") + """|\d""").r
   input
     .split("\n")
     .map: line =>
