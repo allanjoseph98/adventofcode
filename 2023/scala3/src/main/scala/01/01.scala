@@ -1,6 +1,4 @@
 package day1;
-
-import scala.util.matching.Regex.Match
 @main def main =
   val file1 =
     scala.io.Source.fromResource("01/input.txt").getLines().mkString("\n")
