@@ -65,8 +65,8 @@ def part1(games: List[Game]) =
         .flatMap(round =>
           for
             draw <- round.draws
-            limit <- limit.draws
-          yield draw.color == limit.color && draw.cubes > limit.cubes
+            limit <- limit.draws if draw.color == limit.color
+          yield draw.cubes > limit.cubes
         )
         .forall(fail => !fail)
     .map(_.id)
