@@ -30,14 +30,10 @@ def getHits(numMatch: Match, lines: Array[String], line: String, lno: Int) =
         if isSymbol(char) then Some(index) else None
       )
       .flatten
-  val aboveIndices = otherLineSymbolIndices(lno - 1)
-  val belowIndices = otherLineSymbolIndices(lno + 1)
-  def aboveCond(s: Int) =
-    s >= 0 && within(s, startMinusOne, endPlusOne)
-  def belowCond(s: Int) =
-    s < lines.length && within(s, startMinusOne, endPlusOne)
-  val above = aboveIndices.find(aboveCond)
-  val below = belowIndices.find(belowCond)
+  def withinCond(s: Int) =
+    s >= 0 && s < lines.length && within(s, startMinusOne, endPlusOne)
+  val above = otherLineSymbolIndices(lno - 1).find(withinCond)
+  val below = otherLineSymbolIndices(lno + 1).find(withinCond)
   val aboveCoords = above.map(Coords(safeLno(lno - 1, line.length()), _))
   val belowCoords = below.map(Coords(safeLno(lno + 1, line.length()), _))
   val rightCoords = if left then Some(Coords(lno, startMinusOne)) else None
