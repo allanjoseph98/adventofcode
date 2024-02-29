@@ -11,7 +11,7 @@ def main =
 case class Card(winners: Array[Int], draw: Array[Int])
 case class Copy(id: Int, bonuses: List[Int], var copies: Int = 1)
 
-def strToIntOptArr(line: String): Array[Int] =
+def toIntArr(line: String): Array[Int] =
   line.split(' ').map(_.toIntOption).flatten
 
 def prep(input: String) =
@@ -20,8 +20,8 @@ def prep(input: String) =
     .map: line =>
       val split = line.split('|')
       (
-        split.headOption.map(strToIntOptArr),
-        split.lastOption.map(strToIntOptArr)
+        split.headOption.map(toIntArr),
+        split.lastOption.map(toIntArr)
       ) match {
         case (Some(winners), Some(draw)) => Some(Card(winners, draw))
         case _                           => None
