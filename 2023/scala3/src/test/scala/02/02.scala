@@ -1,6 +1,6 @@
 package day2
 
-class day1Tests extends munit.FunSuite {
+class day2Tests extends munit.FunSuite {
   val testInput =
     scala.io.Source.fromResource("02/testinput.txt").getLines().mkString("\n")
   val games = parseGames(testInput).toList
