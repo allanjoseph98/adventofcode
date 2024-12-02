@@ -27,6 +27,7 @@ local.sbt
 .bloop/
 .metals/
 metals.sbt
+.scala-build/
 
 # IDEA
 .idea
