@@ -35,8 +35,6 @@ def part2(file: String) =
       .filter: mul =>
         donts
           .filter(_ < mul.start)
-          .maxOption match {
-          case Some(dont) => dos.exists(doo => doo > dont && doo < mul.start)
-          case None       => true
-        }
+          .maxOption
+          .fold(true)(dont => dos.exists(doo => doo > dont && doo < mul.start))
   )
